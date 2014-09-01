@@ -53,6 +53,30 @@ module Watir
           end
         end
       end
+
+
+      describe 'depending on subtype' do
+        it 'returns a Watir::Checkbox' do
+          expect(browser.field('Checkbox')).to be_a(Watir::CheckBox)
+        end
+
+        it 'returns a Watir::Select' do
+          expect(browser.field('Select')).to be_a(Watir::Select)
+        end
+
+        it 'returns a Watir::TextField' do
+          expect(browser.field('Text Field')).to be_a(Watir::TextField)
+        end
+
+        it 'returns a Watir::TextArea' do
+          expect(browser.field('Text Area')).to be_a(Watir::TextArea)
+        end
+
+        it 'returns a Watir::Radio' do
+          expect(browser.field('Radio')).to be_a(Watir::Radio)
+        end
+
+      end
     end
   end
 end

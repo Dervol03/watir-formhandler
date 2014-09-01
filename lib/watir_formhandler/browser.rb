@@ -1,4 +1,3 @@
-require 'pry'
 module Watir
   class Browser
     # Searches for the specified label and returns the form field belonging to it, identified by the
@@ -10,7 +9,8 @@ module Watir
       start_node ||= self
       field_id = label.respond_to?(:for) ? label.for : start_node.label(text: label).for
 
-      start_node.element(id: field_id)
+      found_field = start_node.element(id: field_id)
+      found_field ? found_field.to_subtype : nil
     end
   end
 end
