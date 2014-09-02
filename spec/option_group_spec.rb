@@ -62,7 +62,45 @@ module Watir
 
 
     describe '#options' do
-      it 'gives a hash with all options and their fields'
+      it 'gives a hash with all available checkboxes and their labels' do
+        option_hash = {'Checkbox1' => 'checkbox1',
+                       'Checkbox2' => 'checkbox2',
+                       'Checkbox3' => 'checkbox3',
+                       'Checkbox4' => 'checkbox4'
+        }
+        found_options = browser.option_group(id: 'checkboxset').options
+
+        expect(found_options).to be_a(Hash)
+        expect(found_options.keys).to eq(option_hash.keys)
+        expect(found_options.values.map(&:id)).to eq(option_hash.values)
+      end
+
+      it 'gives a hash with all available radio buttons and their labels' do
+        option_hash = {'Radio1' => 'radio1',
+                       'Radio2' => 'radio2',
+                       'Radio3' => 'radio3',
+                       'Radio4' => 'radio4'
+        }
+        found_options = browser.option_group(id: 'radioset').options
+
+        expect(found_options).to be_a(Hash)
+        expect(found_options.keys).to eq(option_hash.keys)
+        expect(found_options.values.map(&:id)).to eq(option_hash.values)
+      end
+
+      it 'gives a hash with all available radio buttons, checkboxes and their labels' do
+        option_hash = { 'Checkbox5' => 'checkbox5',
+                        'Checkbox6' => 'checkbox6',
+                        'Radio5'    => 'radio5',
+                        'Radio6'    => 'radio6',
+                        'Radio7'    => 'radio7',
+        }
+        found_options = browser.option_group(id: 'radio_and_checkbox').options
+
+        expect(found_options).to be_a(Hash)
+        expect(found_options.keys).to eq(option_hash.keys)
+        expect(found_options.values.map(&:id)).to eq(option_hash.values)
+      end
     end
 
 

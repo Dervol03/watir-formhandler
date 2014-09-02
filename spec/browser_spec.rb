@@ -87,15 +87,15 @@ module Watir
 
         context 'if fields are grouped' do
           it 'returns Watir::OptionGroup for grouped checkboxes' do
-            expect(browser.field('Checkbox 1')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Checkbox1')).to be_a(Watir::OptionGroup)
           end
 
           it 'returns Watir::OptionGroup for grouped radio buttons' do
-            expect(browser.field('Radio 1')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Radio1')).to be_a(Watir::OptionGroup)
           end
 
           it 'returns Watir::OptionGroup for grouped chckboxes and radio buttons' do
-            expect(browser.field('Checkbox with Radio')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Checkbox5')).to be_a(Watir::OptionGroup)
           end
         end
 

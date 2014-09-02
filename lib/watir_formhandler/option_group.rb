@@ -31,5 +31,13 @@ module Watir
     end
 
 
-  end
-end
+    # Returns all available options fields and their respective label as a Hash.
+    # return [Hash<label => field>] hash with all labels and fields.
+    def options
+      self.labels.reduce({}) do |option_hash, label|
+        option_hash[label.text] = element(id: label.for)
+        option_hash
+      end
+    end
+  end # OptionGroup
+end # Watir
