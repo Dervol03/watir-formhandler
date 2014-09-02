@@ -56,25 +56,46 @@ module Watir
 
 
       describe 'depending on subtype' do
-        it 'returns a Watir::Checkbox' do
-          expect(browser.field('Checkbox')).to be_a(Watir::CheckBox)
+        context 'if a single field is in the area' do
+          it 'returns a Watir::Checkbox for a checkbox' do
+            expect(browser.field('Checkbox')).to be_a(Watir::CheckBox)
+          end
+
+          it 'returns a Watir::Select for a select' do
+            expect(browser.field('Select')).to be_a(Watir::Select)
+          end
+
+          it 'returns a Watir::TextField for a text field' do
+            expect(browser.field('Text Field')).to be_a(Watir::TextField)
+          end
+
+          it 'returns a Watir::TextArea for a text area' do
+            expect(browser.field('Text Area')).to be_a(Watir::TextArea)
+          end
+
+          it 'returns a Watir::Radio for a radio button' do
+            expect(browser.field('Radio')).to be_a(Watir::Radio)
+          end
+
+          it 'returns a Watir::FileField for a file field' do
+            expect(browser.field('File')).to be_a(Watir::FileField)
+          end
         end
 
-        it 'returns a Watir::Select' do
-          expect(browser.field('Select')).to be_a(Watir::Select)
+        context 'if fields are grouped' do
+          it 'returns Watir::OptionGroup for grouped checkboxes' do
+            expect(browser.field('Checkbox 1')).to be_a(Watir::OptionGroup)
+          end
+
+          it 'returns Watir::OptionGroup for grouped radio buttons' do
+            expect(browser.field('Radio 1')).to be_a(Watir::OptionGroup)
+          end
+
+          it 'returns Watir::OptionGroup for grouped chckboxes and radio buttons' do
+            expect(browser.field('Checkbox with Radio')).to be_a(Watir::OptionGroup)
+          end
         end
 
-        it 'returns a Watir::TextField' do
-          expect(browser.field('Text Field')).to be_a(Watir::TextField)
-        end
-
-        it 'returns a Watir::TextArea' do
-          expect(browser.field('Text Area')).to be_a(Watir::TextArea)
-        end
-
-        it 'returns a Watir::Radio' do
-          expect(browser.field('Radio')).to be_a(Watir::Radio)
-        end
 
       end
     end
