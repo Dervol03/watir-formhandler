@@ -7,14 +7,13 @@ module Watir
   # @example
   #   group = browser.option
   class OptionGroup < HTMLElement
-
+    # Allows selector to be an HTMLElement, in which case the internal element will be set to this
+    # HTMLElement node.
     def initialize(parent, selector)
       stripped_selector = selector.respond_to?(:selector) ? selector.selector : selector
       super parent, stripped_selector
 
       @element = selector if selector.respond_to?(:selector)
     end
-
-
   end
 end
