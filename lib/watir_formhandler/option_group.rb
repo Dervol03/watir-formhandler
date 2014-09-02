@@ -24,5 +24,12 @@ module Watir
     end
 
 
+    # Returns the fields of all available options.
+    # @return [Array<Element>] fields of all options.
+    def option_fields
+      self.checkboxes.to_a + self.radios.to_a
+    end
+
+
   end
 end
