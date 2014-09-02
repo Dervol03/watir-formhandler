@@ -12,7 +12,3 @@ def local_url(page)
   File.join('file://', HTML_DIR, page)
 end
 
-RSpec.configure do |config|
-  config.before(:all) { @browser = Watir::Browser.new }
-  config.after(:all)  { @browser.close}
-end

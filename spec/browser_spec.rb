@@ -3,7 +3,10 @@ require 'spec_helper'
 
 module Watir
   describe Browser do
+    before(:all) { @browser = Watir::Browser.new }
+    after(:all)  { @browser.close}
     let(:browser){ @browser }
+
     describe '#field' do
       before(:each) { browser.goto(local_url(FORM_PAGE))}
 

@@ -15,5 +15,14 @@ module Watir
 
       @element = selector if selector.respond_to?(:selector)
     end
+
+
+    # Returns the names of all available options.
+    # @return [Array<String>] names of all options.
+    def option_names
+      self.labels.map{ |label| label.text.strip }
+    end
+
+
   end
 end
