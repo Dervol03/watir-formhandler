@@ -8,5 +8,3 @@ require 'watir_formhandler/element'
 require 'watir_formhandler/option_group'
 require 'watir_formhandler/container'
 require 'watir_formhandler/browser'
-
-

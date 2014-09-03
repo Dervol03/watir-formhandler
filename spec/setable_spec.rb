@@ -2,60 +2,49 @@ require 'spec_helper'
 
 module Watir
   describe Setable do
-    before(:each) { @field = Class.new{ include Setable }.new  }
+    before(:all) do
+      @browser = Browser.new
+      @browser.goto(local_url(FORM_PAGE))
+    end
+    after(:all){ @browser.close }
+    let(:browser) { @browser }
+
+    before(:each) do
+      @field = browser.checkbox
+    end
     let(:field) { @field }
 
     describe 'on include' do
-      it 'provides the #set method' do
-        expect(field).to respond_to(:set)
+      it 'provides the #fill_in method' do
+        expect(field).to respond_to(:fill_in)
       end
     end
 
 
-    describe '#set' do
-      context 'text and textarea' do
-        it 'fills in a TextField with a string' do
-          field.stub(:tag_name).and_return('text')
-          expect(field).to receive(:set).with('fill text').twice
-          field.set('fill text')
-        end
-
-        it 'fill in a TextArea with a string' do
-          field.stub(:tag_name).and_return('textarea')
-          expect(field).to receive(:set).with('fill text').twice
-          field.set('fill text')
-        end
-      end
-
+    describe '#fill_in' do
       context 'for checkboxes' do
-        before(:each){ field.stub(:tag_name).and_return('checkbox') }
-
         it 'checks it if uncheckbox' do
-          field.stub(:checked).and_return(false)
-          expect(field).to receive(:set).with(true).ordered
-          expect(field).to receive(:check).with(true).ordered
-          field.set(true)
+          field.click if field.checked?
+          field.fill_in(true)
+          expect(field.checked?).to eq(true)
         end
 
         it 'unchecks if checked' do
-          field.stub(:checked).and_return(true)
-          expect(field).to receive(:set).with(false).ordered
-          expect(field).to receive(:check).with(false).ordered
-          field.set(true)
+          field.click unless field.checked?
+          field.fill_in(true)
+          expect(field.checked?).to eq(true)
         end
 
         it 'does not check if checked' do
-          field.stub(:checked).and_return(true)
-          expect(field).to receive(:set).with(true).ordered
-          expect(field).not_to receive(:check).with(true).ordered
-          field.set(true)
+          field.click unless field.checked?
+          field.fill_in(true)
+          expect(field.checked?).to eq(true)
         end
 
         it 'does not uncheck if unchecked' do
-          field.stub(:checked).and_return(true)
-          expect(field).to receive(:set).with(true).ordered
-          expect(field).not_to receive(:check).with(true).ordered
-          field.set(true)
+          field.click if field.checked?
+          field.fill_in(false)
+          expect(field.checked?).to eq(false)
         end
       end #context
     end # #set
