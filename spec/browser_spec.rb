@@ -30,12 +30,12 @@ module Watir
 
             expect(start_node).to receive(:label).with(text: 'Checkbox')
             expect(start_node).to receive(:element).with(id: 'checkbox')
-            browser.field('Checkbox', start_node)
+            browser.field('Checkbox', start_node: start_node)
           end
 
           it 'returns form field of the label within Watir::Element' do
             start_node = browser.element(id: 'main_content')
-            expect(browser.field('Checkbox', start_node).id).to eq('checkbox')
+            expect(browser.field('Checkbox', start_node: start_node).id).to eq('checkbox')
           end
         end
 
@@ -46,13 +46,13 @@ module Watir
             start_node = double('enter_element')
 
             expect(start_node).to receive(:element).with(id: 'checkbox')
-            browser.field(field_label, start_node)
+            browser.field(field_label, start_node: start_node)
           end
 
           it 'returns form field of the label within Watir::Element' do
             start_node = browser.element(id: 'main_content')
             field_label = browser.label(text: 'Checkbox')
-            expect(browser.field(field_label, start_node).id).to eq('checkbox')
+            expect(browser.field(field_label, start_node: start_node).id).to eq('checkbox')
           end
         end
       end
@@ -87,15 +87,15 @@ module Watir
 
         context 'if fields are grouped' do
           it 'returns Watir::OptionGroup for grouped checkboxes' do
-            expect(browser.field('Checkbox1')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Checkbox1', include_groups: true)).to be_a(Watir::OptionGroup)
           end
 
           it 'returns Watir::OptionGroup for grouped radio buttons' do
-            expect(browser.field('Radio1')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Radio1', include_groups: true)).to be_a(Watir::OptionGroup)
           end
 
           it 'returns Watir::OptionGroup for grouped chckboxes and radio buttons' do
-            expect(browser.field('Checkbox5')).to be_a(Watir::OptionGroup)
+            expect(browser.field('Checkbox5', include_groups: true)).to be_a(Watir::OptionGroup)
           end
         end
 
