@@ -97,10 +97,80 @@ module Watir
           it 'returns Watir::OptionGroup for grouped chckboxes and radio buttons' do
             expect(browser.field('Checkbox5', include_groups: true)).to be_a(Watir::OptionGroup)
           end
+        end #context
+      end # describe depending on sub type
+    end # describe #field
+
+
+    describe '#fill_in' do
+      let(:field) { @field }
+
+      context 'for checkboxes' do
+        before(:each){ @field = browser.field('Checkbox') }
+
+        it 'checks it if uncheckbox' do
+          field.click if field.checked?
+          expect(field).to receive(:click)
+          browser.fill_in('Checkbox', true)
+          expect(field.checked?).to eq(true)
         end
 
+        it 'unchecks if checked' do
+          field.click unless field.checked?
+          expect(field).to receive(:click)
+          browser.fill_in('Checkbox', false)
+          expect(field.checked?).to eq(false)
+        end
 
-      end
+        it 'does not check if checked' do
+          field.click unless field.checked?
+          expect(field).not_to receive(:click)
+          browser.fill_in('Checkbox', false)
+          expect(field.checked?).to eq(true)
+        end
+
+        it 'does not uncheck if unchecked' do
+          field.click if field.checked?
+          expect(field).not_to receive(:click)
+          field.fill_in(false)
+          expect(field.checked?).to eq(false)
+        end
+      end #context
+
+
+      context 'for radio buttons' do
+        before(:each){ @field = browser.field('Radio') }
+
+        it 'selects it if unselected' do
+          expect(field).to receive(:click)
+          browser.fill_in('Radio', true)
+          expect(field.checked?).to eq(true)
+        end
+
+        it 'does not select it if selected' do
+          field.click
+          expect(field).not_to receive(:click)
+          browser.fill_in('Radio', true)
+          expect(field.checked?).to eq(true)
+        end
+      end # context radio buttons
+
+
+      context 'for text fields' do
+        before(:each){ @field = browser.text_fields.first }
+
+        it 'fills in text' do
+          field.set('')
+          field.fill_in('test string')
+          expect(field.value).to eq('test string')
+        end
+
+        it 'deletes the text content if given empty sting' do
+          field.set('test string')
+          field.fill_in('')
+          expect(field.value).to eq('')
+        end
+      end # context text field
     end
-  end
-end
+  end # Browser
+end # Watir
