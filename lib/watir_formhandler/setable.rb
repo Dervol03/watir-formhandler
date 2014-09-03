@@ -22,4 +22,8 @@ module Watir
   class CheckBox
     include Setable
   end
+
+  class Radio
+    include Setable
+  end
 end

@@ -8,14 +8,11 @@ module Watir
     end
     after(:all){ @browser.close }
     let(:browser) { @browser }
-
-    before(:each) do
-      @field = browser.checkbox
-    end
     let(:field) { @field }
 
     describe 'on include' do
       it 'provides the #fill_in method' do
+        field = Class.new{ include Setable }.new
         expect(field).to respond_to(:fill_in)
       end
     end
@@ -23,6 +20,8 @@ module Watir
 
     describe '#fill_in' do
       context 'for checkboxes' do
+        before(:each){ @field = browser.checkbox }
+
         it 'checks it if uncheckbox' do
           field.click if field.checked?
           field.fill_in(true)
@@ -47,6 +46,16 @@ module Watir
           expect(field.checked?).to eq(false)
         end
       end #context
+
+
+      context 'for radio buttons' do
+        before(:each){ @field = browser.radio }
+        
+        it 'selects it if unselected' do
+          field.fill_in(true)
+          expect(field.checked?).to eq(true)
+        end
+      end # context radio buttons
     end # #set
   end # Setable
 end # Watir
