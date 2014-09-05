@@ -104,7 +104,66 @@ module Watir
     end
 
 
+    describe '#set' do
+      context 'without preselected elements' do
+        context 'for OptionGroup only containing checkboxes' do
+          before(:each){ @option_group = browser.option_group(id: 'checkboxset') }
 
+          it 'clicks a single option' do
+            target_option = browser.checkbox(id: 'checkbox1')
+            @option_group.set('Checkbox1')
+            expect(target_option).to be_checked
+          end
+
+          it 'clicks multiple options' do
+            target_options = browser.element(id: 'checkboxset').checkboxes[0..1]
+            @option_group.set('Checkbox1', 'Checkbox2')
+            target_options.each{ |option| expect(option).to be_checked }
+          end
+
+          it 'click multiple options given as array' do
+            target_options = browser.element(id: 'checkboxset').checkboxes[0..1]
+            @option_group.set(%w(Checkbox1 Checkbox2))
+            target_options.each{ |option| expect(option).to be_checked }
+          end
+        end
+
+
+        context 'for OptionGroup only containing radio buttons' do
+          it 'clicks a single option'
+          it 'clicks multiple options'
+          it 'click multiple options given as array'
+        end
+
+
+        context 'for OptionGroup containing checkboxes and radio buttons' do
+          it 'clicks a single option'
+          it 'clicks multiple options'
+          it 'click multiple options given as array'
+        end
+      end
+
+      context 'with preselected elements' do
+        context 'for OptionGroup only containing checkboxes' do
+          it 'selects a single option and deselects any other'
+          it 'selects multiple options and deselect unwanted ones'
+          it 'performs no clicks if preselected elements equal desired ones'
+        end
+
+
+        context 'for OptionGroup only containing radio buttons' do
+          it 'clicks a single option'
+          it 'does not click if option is already selected'
+          it 'performs no clicks if preselected elements equal desired ones'
+        end
+
+
+        context 'for OptionGroup containing checkboxes and radio buttons' do
+          it 'selects a single option and deselects any other'
+          it 'selects multiple options and deselect unwanted ones'
+          it 'performs no clicks if preselected elements equal desired ones'
+        end
+      end
+    end
   end
-
 end
