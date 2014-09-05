@@ -22,6 +22,12 @@ module Watir
 
 
       context 'when given false' do
+        it 'does not click it if checked' do
+          allow(radio).to receive(:checked?).and_return(true)
+          expect(radio).to_not receive(:click)
+          radio.set(false)
+        end
+
         it 'does not click it if unchecked' do
           allow(radio).to receive(:checked?).and_return(false)
           expect(radio).to_not receive(:click)

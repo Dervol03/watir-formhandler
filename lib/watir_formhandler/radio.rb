@@ -5,9 +5,7 @@ module Watir
     # @param [Boolean] value to be set.
     # @return nil
     def set(value)
-      click unless value == checked?
+      click unless checked? || !value
     end
-
-
   end
 end
