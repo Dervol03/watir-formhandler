@@ -1,0 +1,12 @@
+module Watir
+  require 'watir-webdriver/elements/checkbox'
+  class CheckBox
+
+    # Will click the CheckBox unless the #checked? returns the same value as the given one.
+    # @param [Boolean] value the value to achieve on the CheckBox.
+    # @return [Boolean] the new value of this CheckBox.
+    def set(value)
+      click unless !!value == checked?
+    end
+  end
+end

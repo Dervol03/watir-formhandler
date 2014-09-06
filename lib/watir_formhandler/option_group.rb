@@ -32,12 +32,42 @@ module Watir
 
 
     # Returns all available options fields and their respective label as a Hash.
-    # return [Hash<label => field>] hash with all labels and fields.
+    # @return [Hash<label => field>] hash with all labels and fields.
     def options
-      self.labels.reduce({}) do |option_hash, label|
-        option_hash[label.text] = element(id: label.for)
-        option_hash
+      option_hash = {}
+      my_labels = option_names
+      my_inputs = option_fields
+
+      my_labels.count.times do |index|
+        option_hash[my_labels[index]] = my_inputs[index]
       end
+      option_hash
+    end
+
+
+    # Selects the given option(s) and deselects all other ones. This can not be done with
+    # radio buttons, however, as they cannot be deselected.
+    # @param [String, Array<String>] options to be selected.
+    # @example Passing a single String
+    #   group.set('Checkbox1')  #=> selects 'Checkbox1'
+    # @example Passing several options
+    #   group.set('Checkbox1', 'Checkbox2') #=> selects 'Checkbox1' and 'Checkbox2'
+    # @example Passing several options as Array
+    #   group.set(['Checkbox1', 'Radio1'])  #=> selects 'Checkbox1' and 'Radio1'
+    def set(*wanted_options)
+      options_to_select = [*wanted_options].flatten
+      options_to_deselect = option_names - options_to_select
+
+      @options = options
+      select(options_to_select, true)
+      select(options_to_deselect, false)
+      @options = nil
+    end
+
+
+    private
+    def select(options_to_select, value_to_set)
+      options_to_select.each{ |option| @options[option].set(value_to_set) }
     end
   end # OptionGroup
 end # Watir
