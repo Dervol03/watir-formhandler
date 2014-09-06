@@ -34,11 +34,12 @@ module Watir
     # Returns all available options fields and their respective label as a Hash.
     # @return [Hash<label => field>] hash with all labels and fields.
     def options
-      my_labels = labels
-      my_inputs = inputs.map(&:to_subtype)
       option_hash = {}
-      my_labels.each_with_index do |my_label, index|
-        option_hash[my_label.text] = my_inputs[index]
+      my_labels = option_names
+      my_inputs = option_fields
+
+      my_labels.count.times do |index|
+        option_hash[my_labels[index]] = my_inputs[index]
       end
       option_hash
     end
