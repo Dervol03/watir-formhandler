@@ -108,7 +108,7 @@ module Watir
       let(:option_group) { @option_group }
 
       context 'without preselected elements' do
-        context 'for OptionGroup only containing checkboxes', wip: true do
+        context 'for OptionGroup only containing checkboxes' do
           before(:each){ @option_group = browser.option_group(id: 'checkboxset') }
 
           it 'clicks a single option' do
@@ -262,7 +262,21 @@ module Watir
             preselected.each{ |option| expect(option).to_not receive(:click) }
             option_group.set('Checkbox6', 'Radio5')
           end
-        end
+        end # group with radio and checkbox
+      end # with preselected elements
+    end # #set
+
+
+    describe '#selected_options' do
+      it 'returns the selected options of a group' do
+        option_group = browser.option_group(id: 'radio_and_checkbox')
+        option_group.set(%w(Checkbox5 Radio7))
+        expect(option_group.selected_options).to eq(%w(Checkbox5 Radio7))
+      end
+
+      it 'returns empty array if nothing is selected' do
+        option_group = browser.option_group(id: 'radio_and_checkbox')
+        expect(option_group.selected_options).to be_empty
       end
     end
   end

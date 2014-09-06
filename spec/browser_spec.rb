@@ -150,7 +150,7 @@ module Watir
       end # desribe: without a start node
 
 
-      describe 'with a start node', wip: true do
+      describe 'with a start node' do
         let(:start_node){ browser.element(id: 'main_content') }
 
         it 'fills a Watir::Checkbox from start node' do
