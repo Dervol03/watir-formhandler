@@ -65,6 +65,16 @@ module Watir
     end
 
 
+    # Returns the selected options of this OptionGroup.
+    # @return [Array<String>] the selected options.
+    def selected_options
+      options.reduce([]) do |selected, field|
+        selected << field[0] if field[1].checked?
+        selected
+      end
+    end
+
+
     private
     def select(options_to_select, value_to_set)
       options_to_select.each{ |option| @options[option].set(value_to_set) }
