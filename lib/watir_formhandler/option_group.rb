@@ -53,10 +53,10 @@ module Watir
     def set(*wanted_options)
       t1 = ::Time.now
       options_to_select = [*wanted_options].flatten
-      #options_to_deselect = option_names - wanted_options
+      options_to_deselect = option_names - wanted_options
 
       select(options_to_select, true)
-      #select(options_to_deselect, false)
+      select(options_to_deselect, false)
       t2 = ::Time.now
       puts t2-t1
     end

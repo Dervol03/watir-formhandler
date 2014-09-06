@@ -179,25 +179,89 @@ module Watir
         end
       end
 
-      context 'with preselected elements' do
+
+      context 'with preselected elements', wip: true do
         context 'for OptionGroup only containing checkboxes' do
-          it 'selects a single option and deselects any other'
-          it 'selects multiple options and deselect unwanted ones'
-          it 'performs no clicks if preselected elements equal desired ones'
+          before(:each){ @option_group = browser.option_group(id: 'checkboxset') }
+          let(:fieldset) { browser.element(id: 'checkboxset') }
+          let(:preselected) { fieldset.checkboxes[2..3] }
+          before(:each) { preselected.map(&:click) }
+
+          it 'selects a single option and deselects any other' do
+            target_option = browser.element(id: 'checkboxset').checkboxes.first
+            option_group.set('Checkbox1')
+            preselected.each{ |option| expect(option).to_not be_checked }
+            expect(target_option).to be_checked
+          end
+
+          it 'selects multiple options and deselect unwanted ones' do
+            target_options = browser.element(id: 'checkboxset').checkboxes[0..1]
+            option_group.set('Checkbox1', 'Checkbox2')
+            preselected.each{ |option| expect(option).to_not be_checked }
+            target_options.each{ |option| expect(option).to be_checked }
+          end
+
+          it 'performs no clicks if preselected elements equal desired ones' do
+            preselected.each{ |option| expect(option).to_not receive(:click) }
+            option_group.set('Checkbox3', 'Checkbox4')
+          end
         end
 
 
         context 'for OptionGroup only containing radio buttons' do
-          it 'clicks a single option'
-          it 'does not click if option is already selected'
-          it 'performs no clicks if preselected elements equal desired ones'
+          before(:each){ @option_group = browser.option_group(id: 'radioset') }
+          let(:fieldset) { browser.element(id: 'radioset') }
+          let(:preselected) { fieldset.radios[1] }
+          before(:each) { preselected.click }
+
+          it 'selects a single option and deselects any other' do
+            target_option = browser.element(id: 'radioset').radios.first
+            sleep 2
+            option_group.set('Radio1')
+            sleep 2
+            expect(preselected).to_not be_checked
+            expect(target_option).to be_checked
+          end
+
+          it 'selects multiple options and deselect unwanted ones' do
+            target_option = browser.element(id: 'radioset').radios[3]
+            option_group.set('Radio3', 'Radio4')
+            expect(preselected).to_not be_checked
+            expect(target_option).to be_checked
+          end
+
+          it 'performs no clicks if preselected elements equal desired ones' do
+            expect(preselected).to_not receive(:click)
+            option_group.set('Radio2')
+          end
         end
 
 
         context 'for OptionGroup containing checkboxes and radio buttons' do
-          it 'selects a single option and deselects any other'
-          it 'selects multiple options and deselect unwanted ones'
-          it 'performs no clicks if preselected elements equal desired ones'
+          before(:each){ @option_group = browser.option_group(id: 'radio_and_checkbox') }
+          let(:fieldset) { browser.element(id: 'radio_and_checkbox') }
+          let(:preselected) { fieldset.inputs[1..2].map(&:to_subtype) }
+          before(:each) { preselected.map(&:click) }
+
+          it 'selects a single option and deselects any other' do
+            target_option = fieldset.checkboxes.first
+            option_group.set('Checkbox5')
+            expect(preselected.first).to_not be_checked
+            expect(preselected.last).to be_checked
+            expect(target_option).to be_checked
+          end
+
+          it 'selects multiple options and deselect unwanted ones' do
+            target_options = [fieldset.checkboxes.first, fieldset.radios.last]
+            option_group.set('Checkbox5', 'Radio7')
+            preselected.each{ |option| expect(option).to_not be_checked }
+            target_options.each{ |option| expect(option).to be_checked }
+          end
+
+          it 'performs no clicks if preselected elements equal desired ones' do
+            preselected.each{ |option| expect(option).to_not receive(:click) }
+            option_group.set('Checkbox6', 'Radio5')
+          end
         end
       end
     end
