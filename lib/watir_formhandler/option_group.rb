@@ -68,10 +68,12 @@ module Watir
     # Returns the selected options of this OptionGroup.
     # @return [Array<String>] the selected options.
     def selected_options
-      options.reduce([]) do |selected, field|
-        selected << field[0] if field[1].checked?
-        selected
+      selected = []
+      my_labels = option_names
+      inputs.each_with_index do |field, index|
+        a << my_labels[index] if field.checked?
       end
+      selected
     end
 
 
