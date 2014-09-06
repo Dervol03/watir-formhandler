@@ -34,10 +34,13 @@ module Watir
     # Returns all available options fields and their respective label as a Hash.
     # @return [Hash<label => field>] hash with all labels and fields.
     def options
-      self.labels.reduce({}) do |option_hash, label|
-        option_hash[label.text] = element(id: label.for).to_subtype
-        option_hash
+      my_labels = labels
+      my_inputs = inputs.map(&:to_subtype)
+      option_hash = {}
+      my_labels.each_with_index do |my_label, index|
+        option_hash[my_label.text] = my_inputs[index]
       end
+      option_hash
     end
 
 
@@ -51,22 +54,19 @@ module Watir
     # @example Passing several options as Array
     #   group.set(['Checkbox1', 'Radio1'])  #=> selects 'Checkbox1' and 'Radio1'
     def set(*wanted_options)
-      t1 = ::Time.now
       options_to_select = [*wanted_options].flatten
-      options_to_deselect = option_names - wanted_options
+      options_to_deselect = option_names - options_to_select
 
+      @options = options
       select(options_to_select, true)
       select(options_to_deselect, false)
-      t2 = ::Time.now
-      puts t2-t1
+      @options = nil
     end
 
 
     private
     def select(options_to_select, value_to_set)
-      options_to_select.each do |option|
-        browser.field(option, start_node: self).set(value_to_set)
-      end
+      options_to_select.each{ |option| @options[option].set(value_to_set) }
     end
   end # OptionGroup
 end # Watir

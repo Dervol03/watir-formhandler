@@ -108,7 +108,7 @@ module Watir
       let(:option_group) { @option_group }
 
       context 'without preselected elements' do
-        context 'for OptionGroup only containing checkboxes' do
+        context 'for OptionGroup only containing checkboxes', wip: true do
           before(:each){ @option_group = browser.option_group(id: 'checkboxset') }
 
           it 'clicks a single option' do
@@ -180,7 +180,7 @@ module Watir
       end
 
 
-      context 'with preselected elements', wip: true do
+      context 'with preselected elements' do
         context 'for OptionGroup only containing checkboxes' do
           before(:each){ @option_group = browser.option_group(id: 'checkboxset') }
           let(:fieldset) { browser.element(id: 'checkboxset') }
