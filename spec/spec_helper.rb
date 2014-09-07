@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require 'watir'
 require 'watir-webdriver'
 require 'selenium-webdriver'
@@ -11,4 +12,3 @@ FORM_PAGE = 'form.html'
 def local_url(page)
   File.join('file://', HTML_DIR, page)
 end
-

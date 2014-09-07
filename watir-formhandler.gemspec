@@ -3,7 +3,6 @@ Gem::Specification.new do |spec|
   spec.version        = '0.0.1'
   spec.platform       = Gem::Platform::RUBY
 
-
   spec.authors        = ['Yves Komenda']
   spec.email          = ['b_d_v@web.de']
   spec.summary        = 'Adds some generic form handling to watir'
@@ -14,7 +13,6 @@ Gem::Specification.new do |spec|
   spec.files          = Dir['lib/**/*.rb']
   spec.test_files     = Dir['spec/**/*']
   spec.require_paths  = ['lib']
-
 
   spec.add_runtime_dependency 'watir', ['=5.0.0']
   spec.add_runtime_dependency 'watir-webdriver', ['=0.6.10']
