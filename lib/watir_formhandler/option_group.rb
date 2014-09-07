@@ -71,7 +71,7 @@ module Watir
       selected = []
       my_labels = option_names
       inputs.each_with_index do |field, index|
-        a << my_labels[index] if field.checked?
+        selected << my_labels[index] if field.checked?
       end
       selected
     end

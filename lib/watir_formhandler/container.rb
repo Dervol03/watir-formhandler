@@ -12,14 +12,27 @@ module Watir
       determine_field(start_node, field_label, include_groups)
     end
 
+
+    # Fills in the given value(s) to the passed attribute. It therefore accepts the same parameters
+    # as the #field method.
+    # @param [String, Watir::Label] label the label for which to find the form field.
+    # @param [Watir::Element] start_node the node where to start searching for the label.
+    # @param [String, Boolean, Array] value to be set.
+    # @param [Boolean] include_groups whether to detect the group of a given label.
+    def fill_in(label, value, start_node: nil, include_groups: nil)
+      field(label, start_node: start_node, include_groups: include_groups).set(value)
+    end
+
+
     # Returns an OptionGroup
     # @return [OptionGroup] the selected OptionGroup
     def option_group(*args)
       selector = args.first.respond_to?(:elements) ? args.first : extract_selector(args)
       OptionGroup.new(self, selector)
     end
-
     Watir.extend_tag_to_class(:option_group, OptionGroup)
+
+
 
     private
     def determine_field(start_node, label, include_groups)
