@@ -47,7 +47,7 @@ module Watir
 
     # Selects the given option(s) and deselects all other ones. This can not be done with
     # radio buttons, however, as they cannot be deselected.
-    # @param [String, Array<String>] options to be selected.
+    # @param [String, Array<String>] wanted_options to be selected.
     # @example Passing a single String
     #   group.set('Checkbox1')  #=> selects 'Checkbox1'
     # @example Passing several options
