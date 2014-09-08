@@ -1,12 +1,12 @@
 Gem::Specification.new do |spec|
   spec.name           = 'watir-formhandler'
-  spec.version        = '0.0.1'
+  spec.version        = '1.0.0'
   spec.platform       = Gem::Platform::RUBY
 
   spec.authors        = ['Yves Komenda']
   spec.email          = ['b_d_v@web.de']
-  spec.summary        = 'Adds some generic form handling to watir'
-  spec.description    = 'TODO'
+  spec.summary        = 'Watir formhandler'
+  spec.description    = 'Adds some convenience methods to fill out forms in Watir'
   spec.homepage       = 'http://rubygems.org/gems/watir-formhandler'
   spec.license        = 'MIT'
 

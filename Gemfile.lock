@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    watir-formhandler (0.0.1)
+    watir-formhandler (1.0.0)
       selenium-webdriver (= 2.42.0)
       watir (= 5.0.0)
       watir-webdriver (= 0.6.10)
