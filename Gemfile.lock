@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    watir-formhandler (0.0.1)
-      selenium-webdriver
-      watir
-      watir-webdriver
+    watir-formhandler (1.0.0)
+      selenium-webdriver (= 2.42.0)
+      watir (= 5.0.0)
+      watir-webdriver (= 0.6.10)
 
 GEM
   remote: https://rubygems.org/
@@ -13,6 +13,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     commonwatir (4.0.0)
+    diff-lcs (1.2.5)
     ffi (1.9.3)
     method_source (0.8.2)
     multi_json (1.10.1)
@@ -20,6 +21,18 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     rubyzip (1.1.6)
     selenium-webdriver (2.42.0)
       childprocess (>= 0.5.0)
@@ -39,4 +52,5 @@ PLATFORMS
 
 DEPENDENCIES
   pry
+  rspec
   watir-formhandler!
