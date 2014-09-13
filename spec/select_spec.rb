@@ -41,11 +41,11 @@ module Watir
     end # #set
 
 
-    describe '#set_value' do
+    describe '#field_value' do
       context 'one option is selected' do
         subject { @browser.select(id: 'select') }
         it 'returns a string' do
-          expect(subject.set_value).to eq('Test')
+          expect(subject.field_value).to eq('Test')
         end
       end
 
@@ -54,10 +54,10 @@ module Watir
         it 'returns a list of selected values' do
           opts = %w(Option1 Option3)
           subject.set(opts)
-          expect(subject.set_value.count).to eq(2)
-          expect(subject.set_value).to eq(opts)
+          expect(subject.field_value.count).to eq(2)
+          expect(subject.field_value).to eq(opts)
         end
       end
-    end #set_value
+    end #field_value
   end
 end

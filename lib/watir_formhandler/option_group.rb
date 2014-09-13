@@ -78,7 +78,7 @@ module Watir
 
 
     # @see #selected_options
-    def set_value
+    def field_value
       selected_options
     end
 

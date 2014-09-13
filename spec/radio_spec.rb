@@ -37,17 +37,17 @@ module Watir
     end # #set
 
 
-    describe '#set_value' do
+    describe '#field_value' do
       context 'if checked' do
         it 'returns true' do
           allow(radio).to receive(:checked?).and_return(true)
-          expect(radio.set_value).to eq(true)
+          expect(radio.field_value).to eq(true)
         end
       end
       context 'if unchecked' do
         it 'returns false' do
           allow(radio).to receive(:checked?).and_return(false)
-          expect(radio.set_value).to eq(false)
+          expect(radio.field_value).to eq(false)
         end
       end
     end # #read

@@ -38,17 +38,17 @@ module Watir
     end # #set
 
 
-    describe '#set_value' do
+    describe '#field_value' do
       context 'if checked' do
         it 'returns true' do
           allow(checkbox).to receive(:checked?).and_return(true)
-          expect(checkbox.set_value).to eq(true)
+          expect(checkbox.field_value).to eq(true)
         end
       end
       context 'if unchecked' do
         it 'returns false' do
           allow(checkbox).to receive(:checked?).and_return(false)
-          expect(checkbox.set_value).to eq(false)
+          expect(checkbox.field_value).to eq(false)
         end
       end
     end # #read

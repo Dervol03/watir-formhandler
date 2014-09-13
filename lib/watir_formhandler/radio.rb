@@ -11,7 +11,7 @@ module Watir
 
     # Returns whether this CheckBox is set or not.
     # @return [Boolean] is checked?
-    def set_value
+    def field_value
       checked?
     end
   end
