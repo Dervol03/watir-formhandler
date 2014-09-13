@@ -278,6 +278,33 @@ module Watir
         option_group = browser.option_group(id: 'radio_and_checkbox')
         expect(option_group.selected_options).to be_empty
       end
-    end
+    end #selected_options
+
+
+    describe '#set_value', wip: true do
+      subject { OptionGroup.new('', id: '') }
+
+      context 'no option is selected' do
+        it 'returns an empty array' do
+          allow(subject).to receive(:selected_options).and_return([])
+          expect(subject.set_value).to eq([])
+        end
+      end
+
+      context 'one option is selected' do
+        it 'returns an array with one element' do
+          allow(subject).to receive(:selected_options).and_return(['Option1'])
+          expect(subject.set_value).to eq(['Option1'])
+        end
+      end
+
+      context 'several options are selected' do
+        it 'returns an array with one element' do
+          opts = %w(Option1 Option3)
+          allow(subject).to receive(:selected_options).and_return(opts)
+          expect(subject.set_value).to eq(opts)
+        end
+      end
+    end #set_value
   end
 end
