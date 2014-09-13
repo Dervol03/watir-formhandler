@@ -77,6 +77,12 @@ module Watir
     end
 
 
+    # @see #selected_options
+    def set_value
+      selected_options
+    end
+
+
     private
     def select(options_to_select, value_to_set)
       options_to_select.each{ |option| @options[option].set(value_to_set) }

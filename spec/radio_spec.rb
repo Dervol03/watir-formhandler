@@ -33,7 +33,23 @@ module Watir
           expect(radio).to_not receive(:click)
           radio.set(false)
         end
+      end # context when given false
+    end # #set
+
+
+    describe '#set_value' do
+      context 'if checked' do
+        it 'returns true' do
+          allow(radio).to receive(:checked?).and_return(true)
+          expect(radio.set_value).to eq(true)
+        end
       end
-    end
+      context 'if unchecked' do
+        it 'returns false' do
+          allow(radio).to receive(:checked?).and_return(false)
+          expect(radio.set_value).to eq(false)
+        end
+      end
+    end # #read
   end
 end

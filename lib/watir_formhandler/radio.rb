@@ -7,5 +7,12 @@ module Watir
     def set(value)
       click unless checked? || !value
     end
+
+
+    # Returns whether this CheckBox is set or not.
+    # @return [Boolean] is checked?
+    def set_value
+      checked?
+    end
   end
 end
