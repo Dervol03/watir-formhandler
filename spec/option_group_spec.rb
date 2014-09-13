@@ -281,20 +281,20 @@ module Watir
     end #selected_options
 
 
-    describe '#set_value', wip: true do
+    describe '#field_value' do
       subject { OptionGroup.new('', id: '') }
 
       context 'no option is selected' do
         it 'returns an empty array' do
           allow(subject).to receive(:selected_options).and_return([])
-          expect(subject.set_value).to eq([])
+          expect(subject.field_value).to eq([])
         end
       end
 
       context 'one option is selected' do
         it 'returns an array with one element' do
           allow(subject).to receive(:selected_options).and_return(['Option1'])
-          expect(subject.set_value).to eq(['Option1'])
+          expect(subject.field_value).to eq(['Option1'])
         end
       end
 
@@ -302,9 +302,9 @@ module Watir
         it 'returns an array with one element' do
           opts = %w(Option1 Option3)
           allow(subject).to receive(:selected_options).and_return(opts)
-          expect(subject.set_value).to eq(opts)
+          expect(subject.field_value).to eq(opts)
         end
       end
-    end #set_value
+    end #field_value
   end
 end
