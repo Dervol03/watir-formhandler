@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Watir
   describe TextField do
-    describe '#set_value', wip: true do
+    describe '#set_value' do
       subject { Watir::TextField.new('', id: '') }
 
       context 'has text' do

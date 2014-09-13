@@ -21,5 +21,14 @@ module Watir
       clear
       values.flatten.each{ |value| select(value) }
     end
+
+
+    # Selected option(s) of this Select.
+    # @return [String, Array<String>] if only one option is selected, return it as string,
+    # otherwise, return it as an array of strings.
+    def set_value
+      opts = selected_options
+      opts.count == 1 ? opts.first.text : opts.map(&:text)
+    end
   end
 end
