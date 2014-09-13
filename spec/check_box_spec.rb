@@ -34,7 +34,23 @@ module Watir
           expect(checkbox).to_not receive(:click)
           checkbox.set(false)
         end
+      end #context when given false
+    end # #set
+
+
+    describe '#set_value' do
+      context 'if checked' do
+        it 'returns true' do
+          allow(checkbox).to receive(:checked?).and_return(true)
+          expect(checkbox.set_value).to eq(true)
+        end
       end
-    end
+      context 'if unchecked' do
+        it 'returns false' do
+          allow(checkbox).to receive(:checked?).and_return(false)
+          expect(checkbox.set_value).to eq(false)
+        end
+      end
+    end # #read
   end
 end
