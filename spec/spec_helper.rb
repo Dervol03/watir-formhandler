@@ -1,3 +1,5 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 require 'watir'
 require 'watir-webdriver'
 require 'selenium-webdriver'
