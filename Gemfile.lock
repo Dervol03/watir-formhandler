@@ -63,5 +63,6 @@ DEPENDENCIES
   codeclimate-test-reporter
   pry
   rspec
+  simplecov
   watir-formhandler!
   yard
