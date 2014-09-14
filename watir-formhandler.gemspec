@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name           = 'watir-formhandler'
-  spec.version        = '1.0.0'
+  spec.version        = '2.1.0'
   spec.platform       = Gem::Platform::RUBY
 
   spec.authors        = ['Yves Komenda']
