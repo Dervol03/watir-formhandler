@@ -16,5 +16,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'watir', ['=5.0.0']
   spec.add_runtime_dependency 'watir-webdriver', ['=0.6.10']
-  spec.add_runtime_dependency 'selenium-webdriver', ['2.42.0']
 end
