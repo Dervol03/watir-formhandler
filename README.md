@@ -1,4 +1,4 @@
-![Code Climate](https://codeclimate.com/github/Dervol03/watir-formhandler/badges/gpa.svg)](https://codeclimate.com/github/Dervol03/watir-formhandler)
+![Code Climate](https://codeclimate.com/github/Dervol03/watir-formhandler/badges/gpa.svg)
 
 watir-formhandler
 =================
