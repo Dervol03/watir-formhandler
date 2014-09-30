@@ -6,10 +6,15 @@ module Watir
     # @param [Watir::Element] start_node the node where to start searching for the label.
     # @param [Boolean] include_groups whether to detect the group of a given label.
     # @return [Watir::Element] form field of the given label.
-    def field(label, start_node: nil, include_groups: false)
+    def field(label, start_node: nil, include_groups: false, placeholder: false)
       start_node ||= self
-      field_label = label.respond_to?(:for) ? label : start_node.label(text: label)
-      determine_field(start_node, field_label, include_groups)
+
+      if placeholder
+        start_node.element(placeholder: label).to_subtype
+      else
+        field_label = label.respond_to?(:for) ? label : start_node.label(text: label)
+        determine_field(start_node, field_label, include_groups)
+      end
     end
 
 

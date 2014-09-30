@@ -118,6 +118,17 @@ module Watir
           end
         end
       end # describe sybtype
+
+
+      describe 'using placeholder: true' do
+        it 'returns Watir::TextField for a text field with a placeholder' do
+          expect(browser.field('Placeholder Text', placeholder: true)).to be_an Watir::TextField
+        end
+
+        it 'returns Watir::TextArea for a text area with a placeholder' do
+          expect(browser.field('Placeholder Area', placeholder: true)).to be_an Watir::TextArea
+        end
+      end
     end # #field
 
 

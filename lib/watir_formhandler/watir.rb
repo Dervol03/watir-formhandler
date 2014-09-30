@@ -10,4 +10,13 @@ module Watir
     @tag_to_class = @tag_to_class.dup.merge(tag => tag_class)
     @tag_to_class.freeze
   end
+
+
+  # Adds the placeholder attribute to input fields to allow them to be searched by it. I tried to
+  # call the attribute method on Input and even TextField at first, but HTMLElement was the only one
+  # with which it was successfully added. This should surely be fixed some day.
+  class HTMLElement
+    # TODO: find a way to move this call into TextField and TextArea where it belongs.
+    attribute('String', :placeholder, :placeholder)
+  end
 end
