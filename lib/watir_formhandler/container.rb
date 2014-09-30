@@ -5,6 +5,9 @@ module Watir
     # @param [String, Watir::Label] label the label for which to find the form field.
     # @param [Watir::Element] start_node the node where to start searching for the label.
     # @param [Boolean] include_groups whether to detect the group of a given label.
+    # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
+    #                              attribute for an input field.
+    #
     # @return [Watir::Element] form field of the given label.
     def field(label, start_node: nil, include_groups: false, placeholder: false)
       start_node ||= self
@@ -24,8 +27,14 @@ module Watir
     # @param [Watir::Element] start_node the node where to start searching for the label.
     # @param [String, Boolean, Array] value to be set.
     # @param [Boolean] include_groups whether to detect the group of a given label.
-    def fill_in(label, value, start_node: nil, include_groups: nil)
-      field(label, start_node: start_node, include_groups: include_groups).set(value)
+    # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
+    #                              attribute for an input field.
+    def fill_in(label, value, start_node: nil, include_groups: nil, placeholder: false)
+      field(label,
+            start_node:     start_node,
+            include_groups: include_groups,
+            placeholder:    placeholder
+      ).set(value)
     end
 
 
@@ -46,8 +55,7 @@ module Watir
         return option_group(label.parent) if group_member_count > 1
       end
 
-      field_id = label.for
-      found_field = start_node.element(id: field_id)
+      found_field = start_node.element(id: label.for)
       found_field ? found_field.to_subtype : nil
     end
   end

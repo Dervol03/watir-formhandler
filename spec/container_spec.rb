@@ -247,6 +247,21 @@ module Watir
           expect(option_group.selected_options).to eq(%w(Checkbox5 Radio7))
         end
       end # descibe: with a start node
+
+
+      describe 'with placeholder: true' do
+        it 'fills a Watir::TextField with given text' do
+          target_field = browser.text_field(id: 'placeholder_text')
+          browser.fill_in('Placeholder Text', 'Test Text', placeholder: true)
+          expect(target_field.value).to eq('Test Text')
+        end
+
+        it 'fills a Watir::TextArea with given text' do
+          target_field = browser.textarea(id: 'placeholder_area')
+          browser.fill_in('Placeholder Area', 'Test Text', placeholder: true)
+          expect(target_field.value).to eq('Test Text')
+        end
+      end# with placeholder: true
     end # #fill_in
   end
 
