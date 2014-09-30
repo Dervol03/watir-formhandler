@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name                   = 'watir-formhandler'
-  spec.version                = '2.3.1'
+  spec.version                = '2.3.2'
   spec.platform               = Gem::Platform::RUBY
   spec.required_ruby_version  = '>=2.0.0'
 
@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.email                  = ['b_d_v@web.de']
   spec.summary                = 'Watir formhandler'
   spec.description            = ['Adds some convenience methods to fill out forms in Watir.',
-                                 'Last changes: added sober documentation.'].join("\n")
+                                 'Latest changes: fixed yardocs'].join("\n")
   spec.homepage               = 'http://github.com/Dervol03/watir-formhandler'
   spec.license                = 'MIT'
 
