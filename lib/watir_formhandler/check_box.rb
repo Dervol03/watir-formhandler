@@ -1,5 +1,7 @@
+require 'watir-webdriver/elements/checkbox'
 module Watir
-  require 'watir-webdriver/elements/checkbox'
+
+  # Extends the Watir::Checkbox class with set and field_value methods.
   class CheckBox
 
     # Will click the CheckBox unless the #checked? returns the same value as the given one.
