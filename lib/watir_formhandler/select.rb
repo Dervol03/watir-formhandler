@@ -1,5 +1,8 @@
+require 'watir-webdriver/elements/select'
 module Watir
-  require 'watir-webdriver/elements/select'
+
+  # Extends the Watir::Select class for the #set and #field_value methods and also adds the means
+  # to select multiple options when possible.
   class Select
     # Selects the given option(s) of this Select. If this Select has the 'multiple' attribute, it
     # accept an array, otherwise it will call the internal '#select' method.

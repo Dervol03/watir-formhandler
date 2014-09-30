@@ -1,5 +1,7 @@
+require 'watir-webdriver/elements/radio'
 module Watir
-  require 'watir-webdriver/elements/radio'
+
+  # Extends the Watir::Radio class to add #set and #field_value methods.
   class Radio
     # Clicks this Radio unless #checked? returns the same value as the given one.
     # @param [Boolean] value to be set.
