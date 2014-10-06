@@ -16,6 +16,7 @@ Extends some Watir classes to provide a more comfortale handling for forms and t
  * [#fill_in](#fill_in)
  * [OptionGroup](#optiongroup)
  * [:start_node](#start_node)
+ * [Latest Changes](#latest-changes)
 
 
 ## Installation
@@ -114,3 +115,15 @@ The new methods _#field_ and _#fill_in_ will start their search for the specifie
 given String on the Container on which it is called, by default. However, you may specify an
 arbitrary _start_node_ from which to start, which will probably be most useful when calling the
 methods directly on your Watir::Browser instance.
+
+***
+***
+
+### Latest Changes
+
+#### Version 2.4.0
+
+* Renamed the files in such a way that the gem can now properly required with a hyphen like the
+  gem name instead of an underscore:
+
+      require 'watir-formhandler'

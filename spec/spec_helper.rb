@@ -5,7 +5,7 @@ require 'watir'
 require 'watir-webdriver'
 require 'selenium-webdriver'
 require 'rspec'
-require 'watir_formhandler'
+require 'watir-formhandler'
 require 'pry'
 
 HTML_DIR = File.join(File.dirname(File.expand_path(__FILE__)), 'html')
