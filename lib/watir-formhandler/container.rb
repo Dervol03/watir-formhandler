@@ -7,13 +7,16 @@ module Watir
     # @param [Boolean] include_groups whether to detect the group of a given label.
     # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
     #                              attribute for an input field.
+    # @param [Boolean] id          assumes the given label is an HTML ID and searches for it.
     #
     # @return [Watir::Element] form field of the given label.
-    def field(label, start_node: nil, include_groups: false, placeholder: false)
+    def field(label, start_node: nil, include_groups: false, placeholder: false, id: false)
       start_node ||= self
 
       if placeholder
         start_node.element(placeholder: label).to_subtype
+      elsif id
+        start_node.element(id: label).to_subtype
       else
         field_label = label.respond_to?(:for) ? label : start_node.label(text: label)
         determine_field(start_node, field_label, include_groups)
@@ -29,11 +32,13 @@ module Watir
     # @param [Boolean] include_groups whether to detect the group of a given label.
     # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
     #                              attribute for an input field.
-    def fill_in(label, value, start_node: nil, include_groups: nil, placeholder: false)
+    # @param [Boolean] id          assumes the given label is an HTML ID and searches for it.
+    def fill_in(label, value, start_node: nil, include_groups: nil, placeholder: false, id: false)
       field(label,
             start_node:     start_node,
             include_groups: include_groups,
-            placeholder:    placeholder
+            placeholder:    placeholder,
+            id:             id
       ).set(value)
     end
 

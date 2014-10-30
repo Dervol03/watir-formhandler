@@ -38,7 +38,7 @@ module Watir
           field_label = browser.label(text: 'Checkbox')
           expect(browser.field(field_label).id).to eq('checkbox')
         end
-      end
+      end# without start_node
 
 
       describe 'with a start node' do
@@ -56,7 +56,7 @@ module Watir
             start_node = browser.element(id: 'main_content')
             expect(browser.field('Checkbox', start_node: start_node).id).to eq('checkbox')
           end
-        end
+        end# with start_node
 
 
         context 'specifying the label with a Watir::Label' do
@@ -74,7 +74,7 @@ module Watir
             expect(browser.field(field_label, start_node: start_node).id).to eq('checkbox')
           end
         end
-      end
+      end# Watir::Label
 
 
       describe 'depending on subtype' do
@@ -127,6 +127,15 @@ module Watir
 
         it 'returns Watir::TextArea for a text area with a placeholder' do
           expect(browser.field('Placeholder Area', placeholder: true)).to be_an Watir::TextArea
+        end
+      end
+
+
+      describe 'using id: true' do
+        it 'returns field with id given as label' do
+          text_id = 'text'
+          expect(browser.field(text_id, id: true)).to be_an Watir::TextField
+          expect(browser.field(text_id, id: true).id).to eq(text_id)
         end
       end
     end # #field
@@ -262,6 +271,15 @@ module Watir
           expect(target_field.value).to eq('Test Text')
         end
       end# with placeholder: true
+
+
+      describe 'using id: true', wip: true do
+        it 'fills field with specified id' do
+          text_id = 'text'
+          browser.fill_in(text_id, 'test', id: true)
+          expect(browser.field(text_id, id: true).value).to eq('test')
+        end
+      end# using id: true
     end # #fill_in
   end
 
