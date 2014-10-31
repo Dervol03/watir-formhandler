@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name                   = 'watir-formhandler'
-  spec.version                = '2.6.0'
+  spec.version                = '2.6.1'
   spec.platform               = Gem::Platform::RUBY
   spec.required_ruby_version  = '>=2.0.0'
 

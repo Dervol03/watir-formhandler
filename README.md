@@ -100,10 +100,10 @@ its current value.
     browser = Watir::Browser.new('example_site')
     form = browser.form(id: 'my_form')
 
-    form.read_field('Some Text Field')                  # Reads the value of field labeled
+    form.value_of('Some Text Field')                    # Reads the value of field labeled
                                                         # 'Some Text Field'
 
-    form.fill_in('Some Text Field', placeholder: true)  # Reads the value of a TextField with
+    form.value_of('Some Text Field', placeholder: true) # Reads the value of a TextField with
                                                         # placeholder 'Some Text Field'
 
 
@@ -137,6 +137,10 @@ methods directly on your Watir::Browser instance.
 ---
 
 ### Latest Changes
+
+#### Version 2.6.1
+
+* Fixed documentation of #value_of method
 
 #### Version 2.6.0
 
