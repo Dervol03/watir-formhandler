@@ -1,20 +1,20 @@
 PATH
   remote: .
   specs:
-    watir-formhandler (2.5.0)
+    watir-formhandler (2.6.0)
       watir (= 5.0.0)
       watir-webdriver (= 0.6.11)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    childprocess (0.5.5)
+    childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     commonwatir (4.0.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    ffi (1.9.6)
+    ffi (1.9.5)
     method_source (0.8.2)
     multi_json (1.10.1)
     pry (0.10.1)

@@ -27,19 +27,38 @@ module Watir
     # Fills in the given value(s) to the passed attribute. It therefore accepts the same parameters
     # as the #field method.
     # @param [String, Watir::Label] label the label for which to find the form field.
-    # @param [Watir::Element] start_node the node where to start searching for the label.
     # @param [String, Boolean, Array] value to be set.
+    # @param [Watir::Element] start_node the node where to start searching for the label.
     # @param [Boolean] include_groups whether to detect the group of a given label.
     # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
     #                              attribute for an input field.
     # @param [Boolean] id          assumes the given label is an HTML ID and searches for it.
-    def fill_in(label, value, start_node: nil, include_groups: nil, placeholder: false, id: false)
+    def fill_in(label, value, start_node: nil, include_groups: false, placeholder: false, id: false)
       field(label,
             start_node:     start_node,
             include_groups: include_groups,
             placeholder:    placeholder,
             id:             id
       ).set(value)
+    end
+
+
+    # Returns the current value of the specified form field. It therefore accepts the same
+    # parameters as the #field method.
+    # @param [String, Watir::Label] label the label for which to find the form field.
+    # @param [Watir::Element] start_node the node where to start searching for the label.
+    # @param [Boolean] include_groups whether to detect the group of a given label.
+    # @param [Boolean] placeholder whether to handle label as Watir::Label or as placeholder
+    #                              attribute for an input field.
+    # @param [Boolean] id          assumes the given label is an HTML ID and searches for it.
+    # @return [String, Boolean, Array] current value of the field.
+    def value_of(label, start_node: nil, include_groups: false, placeholder: false, id: false)
+      field(label,
+            start_node:     start_node,
+            include_groups: include_groups,
+            placeholder:    placeholder,
+            id:             id
+      ).field_value
     end
 
 
