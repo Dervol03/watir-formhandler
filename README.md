@@ -14,7 +14,7 @@ Extends some Watir classes to provide a more comfortale handling for forms and t
  * [#field_value](#field_value)
  * [#field](#field)
  * [#fill_in](#fill_in)
- * [#read_field](#read_field)
+ * [#value_of](#value_of)
  * [OptionGroup](#optiongroup)
  * [:start_node](#start_node)
  * [Latest Changes](#latest-changes)
@@ -92,7 +92,7 @@ change its value.
                                                                     # TextField with placeholder
                                                                     # 'Some Text Field'
 
-### #read_field
+### #value_of
 
 All Containers now have a method to search a form field by its label, placeholder or ID and return
 its current value.
@@ -127,7 +127,7 @@ for these kind of groups, if the respective options has been activated.
 
 ### :start_node
 
-The methods _#field_, _#fill_in_ and _#read_field_ will start their search for the specified label
+The methods _#field_, _#fill_in_ and _#value_of_ will start their search for the specified label
 with the given String on the Container on which it is called, by default. However, you may specify
 an arbitrary _start_node_ from which to start, which will probably be most useful when calling the
 methods directly on your Watir::Browser instance.
@@ -140,7 +140,7 @@ methods directly on your Watir::Browser instance.
 
 #### Version 2.6.0
 
-* Added #read_field method that works in the exact same way as #fill_in, but which returns the
+* Added #value_of method that works in the exact same way as #fill_in, but which returns the
 current value of a field.
 
 #### Version 2.5.0
