@@ -139,6 +139,7 @@ module Watir
         end
       end
     end # #field
+    ################################################################################################
 
 
     describe '#fill_in' do
@@ -191,6 +192,7 @@ module Watir
 
 
       describe 'with a start node' do
+        before(:all){ @browser.refresh }
         let(:start_node){ browser.element(id: 'main_content') }
 
         it 'fills a Watir::Checkbox from start node' do
@@ -246,8 +248,7 @@ module Watir
         end
 
         it 'fills a Watir::OptionGroup from start node' do
-          allow(start_node).to receive(:label).and_return(browser.label(text: 'Checkbox5'))
-          expect(start_node).to receive(:label)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Checkbox5'))
           browser.fill_in(
             'Checkbox5', %w(Checkbox5 Radio7), include_groups: true, start_node: start_node
           )
@@ -273,7 +274,7 @@ module Watir
       end# with placeholder: true
 
 
-      describe 'using id: true', wip: true do
+      describe 'using id: true' do
         it 'fills field with specified id' do
           text_id = 'text'
           browser.fill_in(text_id, 'test', id: true)
@@ -281,6 +282,139 @@ module Watir
         end
       end# using id: true
     end # #fill_in
-  end
+    ################################################################################################
+
+
+    describe '#value_of' do
+      before(:all){ @browser.refresh }
+      describe 'without a start node' do
+        it 'returns value of Watir::Checkbox' do
+          browser.fill_in('Checkbox', true)
+          expect(browser.value_of('Checkbox')).to be true
+          browser.fill_in('Checkbox', false)
+          expect(browser.value_of('Checkbox')).to be false
+        end
+
+        it 'returns value of Watir::Radio' do
+          browser.fill_in('Radio', true)
+          expect(browser.value_of('Radio')).to be true
+        end
+
+        it 'returns value of Watir::FileField' do
+          browser.fill_in('File', File.join(HTML_DIR, FORM_PAGE))
+          expect(browser.value_of('File')).to eq(FORM_PAGE)
+        end
+
+        it 'returns value of Watir::TextField' do
+          browser.fill_in('Text Field', 'test text')
+          expect(browser.value_of('Text Field')).to eq('test text')
+        end
+
+        it 'returns value of Watir::TextArea' do
+          browser.fill_in('Text Area', 'test text')
+          expect(browser.value_of('Text Area')).to eq('test text')
+        end
+
+        it 'returns value of Watir::Select with single select' do
+          browser.fill_in('Select', 'Test2')
+          expect(browser.value_of('Select')).to eq('Test2')
+        end
+
+        it 'returns value of Watir::Select with multiple select' do
+          target_value = %w(Option2 Option3)
+          browser.fill_in('Multi Select', target_value)
+          expect(browser.value_of('Multi Select')).to eq(%w(Option2 Option3))
+        end
+
+        it 'returns value of Watir::OptionGroup' do
+          options = %w(Checkbox5 Radio7)
+          browser.fill_in('Checkbox5', options, include_groups: true)
+          expect(browser.value_of('Checkbox5', include_groups: true)).to eq(options)
+        end
+      end # desribe: without a start node
+
+
+      describe 'with a start node' do
+        before(:all){ @browser.refresh }
+        let(:start_node){ browser.element(id: 'main_content') }
+
+        it 'returns value of Watir::Checkbox from start node' do
+          browser.fill_in('Checkbox', true, start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Checkbox'))
+          expect(browser.value_of('Checkbox', start_node: start_node)).to be true
+        end
+
+        it 'returns value of Watir::Radio from start node' do
+          browser.fill_in('Radio', true, start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Radio'))
+          expect(browser.value_of('Radio', start_node: start_node)).to be true
+        end
+
+        it 'returns value of Watir::Select  with single select from start node' do
+          browser.fill_in('Select', 'Test2', start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Select'))
+          expect(browser.value_of('Select', start_node: start_node)).to eq('Test2')
+        end
+
+        it 'returns value of Watir::Select with multiple select from start node' do
+          options = %w(Option2 Option3)
+          browser.fill_in('Multi Select', options, start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Multi Select'))
+          expect(browser.value_of('Multi Select', start_node: start_node)).to eq(options)
+        end
+
+        it 'returns value of Watir::TextField from start node' do
+          browser.fill_in('Text Field', 'test text', start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Text Field'))
+          expect(browser.value_of('Text Field', start_node: start_node)).to eq('test text')
+        end
+
+        it 'returns value of Watir::TextArea from start node' do
+          browser.fill_in('Text Area', 'test text', start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Text Area'))
+          expect(browser.value_of('Text Area', start_node: start_node)).to eq('test text')
+        end
+
+        it 'returns value of Watir::FileField from start node' do
+          browser.fill_in('File', File.join(HTML_DIR, FORM_PAGE), start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'File'))
+          expect(browser.value_of('File', start_node: start_node)).to eq(FORM_PAGE)
+        end
+
+        it 'returns value of Watir::OptionGroup from start node' do
+          options = %w(Checkbox5 Radio7)
+          browser.fill_in('Checkbox5', options, include_groups: true, start_node: start_node)
+          expect(start_node).to receive(:label).and_return(browser.label(text: 'Checkbox5'))
+          expect(browser.value_of('Checkbox5',
+                                  start_node: start_node,
+                                  include_groups: true
+                                 )
+          ).to eq(options)
+        end
+      end # descibe: with a start node
+
+
+      describe 'with placeholder: true' do
+        it 'returns value of Watir::TextField with given text' do
+          browser.fill_in('Placeholder Text', 'Test Text', placeholder: true)
+          expect(browser.value_of('Placeholder Text', placeholder: true)).to eq('Test Text')
+        end
+
+        it 'returns value of Watir::TextArea with given text' do
+          browser.fill_in('Placeholder Area', 'Test Text', placeholder: true)
+          expect(browser.value_of('Placeholder Area', placeholder: true)).to eq('Test Text')
+        end
+      end# with placeholder: true
+
+
+      describe 'using id: true' do
+        it 'returns value of field with specified id' do
+          text_id = 'text'
+          browser.fill_in(text_id, 'test', id: true)
+          expect(browser.value_of(text_id, id: true)).to eq('test')
+        end
+      end# using id: true
+    end
+  end# Container
 
 end
