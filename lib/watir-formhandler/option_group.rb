@@ -12,8 +12,6 @@ module Watir
     def initialize(parent, selector)
       stripped_selector = selector.respond_to?(:selector) ? selector.selector : selector
       super parent, stripped_selector
-
-      @element = selector if selector.respond_to?(:selector)
     end
 
 
@@ -80,6 +78,11 @@ module Watir
     # @see #selected_options
     def field_value
       selected_options
+    end
+
+
+    def tag_name
+      'option_group'
     end
 
 

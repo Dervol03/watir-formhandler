@@ -110,19 +110,14 @@ its current value.
 ### OptionGroup
 
 A new Container sub class, which represents a group of radio buttons and/or checkboxes. Such a group
-may always be referred to, however, to prevent conflicts, _#field_ and _#fill_in_ will only search
-for these kind of groups, if the respective options has been activated.
+may always be referred to, but since 2.7.0 the group will also be automatically returned by #field of
+the described label is pointing to anything else but a regular input field.
 
     browser = Watir::Browser.new('example_site')
     form = browser.form(id: 'my_form')
 
-    form.field('OptionsGroupElement')                       # will return the Checkbox or Radio
-                                                            # which has label 'OptionsGroupElement'
-
-    form.field('OptionsGroupElement', include_groups: true) # returns OptionGroup node to which
-                                                            # the Checkbox/Radio with label
-                                                            # 'OptiongsGroupElement' belongs to.
-
+    form.field('OptionsGroupElement')                       # will return the the collection of checkboxes and radios
+                                                            # as OptionGroup instance
 
 
 ### :start_node
@@ -137,6 +132,13 @@ methods directly on your Watir::Browser instance.
 ---
 
 ### Latest Changes
+
+#### Version 2.7.0
+
+* Updated minimum watir-webdriver version to 0.7.0
+* Tests passed with selenium-webdriver 2.46.2, compatible with Firefox 38.0, Chromium 43
+* Changed OptionGroup to behave like a normal element now
+* OptionGroup will now automatically be returned by #field and used by the respective methods.
 
 #### Version 2.6.1
 
