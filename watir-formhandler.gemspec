@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name                   = 'watir-formhandler'
-  spec.version                = '2.6.1'
+  spec.version                = '2.7.0'
   spec.platform               = Gem::Platform::RUBY
   spec.required_ruby_version  = '>=2.0.0'
 
@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
   spec.require_paths          = ['lib']
   spec.extra_rdoc_files       = ['README.md']
 
-  spec.add_runtime_dependency 'watir', ['=5.0.0']
-  spec.add_runtime_dependency 'watir-webdriver', ['=0.6.11']
+  spec.add_runtime_dependency 'watir', ['>=5.0.0']
+  spec.add_runtime_dependency 'watir-webdriver', ['>=0.7.0']
 end
